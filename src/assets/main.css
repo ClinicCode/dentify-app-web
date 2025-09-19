@@ -1,0 +1,14 @@
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+body {
+
+    font-family: "Inter", sans-serif;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+
