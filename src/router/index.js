@@ -7,7 +7,7 @@ import RegisterComponent from '../modules/iam/components/RegisterComponent.vue';
 import DashboardPage from '../modules/dashborad/page/dashaboard.vue';
 import MainLayoutComponent from '../public/layout/main-layout.component.vue';
 import NotFound from '../public//not-found.component.vue';
-import PatientsPage from '../modules/patients/page/pateint.vue';
+
 import ProfileComponent from "@/modules/iam/components/ProfileComponent.vue";
 
 const routes = [
@@ -18,8 +18,7 @@ const routes = [
         component: MainLayoutComponent,
         children: [
             { path: 'dashboard', component: DashboardPage, name: 'dashboard' },
-            {path: 'patients', component: PatientsPage, name: 'patients' },
-            {path: 'profile', component: ProfileComponent, name: 'profile' },
+            {path: 'profile', component: ProfileComponent, name: 'profile' }
         ],
         meta: { requiresAuth: true },
     },

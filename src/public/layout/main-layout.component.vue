@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen flex flex-col h-screen w-screen">
-    <!-- Toolbar -->
+
     <pv-toolbar
         class="w-full bg-[#D1F2EB] shadow-md fixed top-0 left-0 flex items-center justify-between p-4 pv-toolbar"
     >
-      <!-- Logo -->
+
       <template #start>
         <pv-button
             class="text-black rounded-lg text-lg px-6 py-3"
@@ -14,7 +14,7 @@
         </pv-button>
       </template>
 
-      <!-- Menú centrado -->
+
       <template #center>
         <div class="flex items-center">
           <pv-button class="mx-2" @click="goTo('/home/dashboard')">
@@ -44,7 +44,7 @@
         </div>
       </template>
 
-      <!-- Acciones -->
+
       <template #end>
         <div class="flex items-center">
           <pv-button class="mx-2 text-black rounded-lg text-lg px-1 py-3 pi pi-bell" />
@@ -56,7 +56,7 @@
       </template>
     </pv-toolbar>
 
-    <!-- Contenido -->
+
     <main class="flex-1 p-6 bg-gray-50 overflow-auto mt-[80px]">
       <router-view />
     </main>
@@ -73,7 +73,7 @@ const goTo = (path) => {
 </script>
 
 <style scoped>
-/* Mantener los iconos con separación respecto al texto */
+
 .toolbar-content i {
   margin-right: 0.5rem;
 }
