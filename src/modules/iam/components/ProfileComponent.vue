@@ -43,7 +43,6 @@ const error = ref("");
 const loadProfile = async () => {
   try {
     if (!authStore.user?.accessToken) throw new Error("No token available");
-
     const data = await profileRepo.getUserInfo();
 
     profile.value = {
