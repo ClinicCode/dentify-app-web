@@ -29,7 +29,7 @@ const app = createApp(App)
 
 app.use(PrimeVue, { unstyled: true })
 app.use(router)
-app.use(createPinia()) // 👈 aquí reemplazamos Vuex
+app.use(createPinia())
 
 app.component('pv-card', Card)
     .component('pv-inputtext', InputText)

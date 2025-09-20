@@ -1,16 +1,11 @@
-import axios from "axios";
-import { ApiConstants } from "./ApiConstants";
-import { TokenStorage } from "./TokenStorage";
+import axios from 'axios';
+import { TokenStorage } from './TokenStorage.js';
 
 const api = axios.create({
-    baseURL: ApiConstants.BASE_URL,
-    headers: {
-        "Content-Type": "application/json",
-    },
+    baseURL: '/api',
 });
 
-
-api.interceptors.request.use((config) => {
+api.interceptors.request.use(config => {
     const token = TokenStorage.getAccessToken();
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
