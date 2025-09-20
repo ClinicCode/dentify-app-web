@@ -10,6 +10,10 @@ import NotFound from '../public//not-found.component.vue';
 
 import ProfileComponent from "@/modules/iam/components/ProfileComponent.vue";
 
+
+
+const PatienManagement= ()=>import("../modules/patients/pages/patients-management.component.vue")
+
 const routes = [
     { path: '/login', component: LoginComponent, name: 'login' },
     { path: '/register', component: RegisterComponent, name: 'register' },
@@ -18,7 +22,9 @@ const routes = [
         component: MainLayoutComponent,
         children: [
             { path: 'dashboard', component: DashboardPage, name: 'dashboard' },
-            {path: 'profile', component: ProfileComponent, name: 'profile' }
+            {path: 'profile', component: ProfileComponent, name: 'profile' },
+            {path: 'patients', component: PatienManagement, name: 'patients'}
+
         ],
         meta: { requiresAuth: true },
     },
