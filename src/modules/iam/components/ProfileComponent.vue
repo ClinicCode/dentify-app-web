@@ -6,17 +6,21 @@
       <div v-if="error" class="text-red-500 mb-4 text-center">{{ error }}</div>
 
       <div v-if="profile.fullName" class="space-y-4">
-        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
-          <span class="font-semibold">Full Name:</span> <span>{{ profile.fullName }}</span>
+        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm profile-row">
+          <span class="font-semibold">Full Name:</span>
+          <span>{{ profile.fullName }}</span>
         </div>
-        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
-          <span class="font-semibold">Username:</span> <span>{{ profile.username }}</span>
+        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm profile-row">
+          <span class="font-semibold">Username:</span>
+          <span>{{ profile.username }}</span>
         </div>
-        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
-          <span class="font-semibold">Email:</span> <span>{{ profile.email }}</span>
+        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm profile-row">
+          <span class="font-semibold">Email:</span>
+          <span>{{ profile.email }}</span>
         </div>
-        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
-          <span class="font-semibold">Company:</span> <span>{{ profile.companyName }}</span>
+        <div class="flex justify-between bg-gray-50 p-3 rounded-lg shadow-sm profile-row">
+          <span class="font-semibold">Company:</span>
+          <span>{{ profile.companyName }}</span>
         </div>
       </div>
 
@@ -30,7 +34,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "../stores/AuthStore.js";
+import { useAuthStore } from "../stores/authStore.js";
 import { ProfileRepository } from "../data/repository/ProfileRepository.js";
 
 const authStore = useAuthStore();
@@ -66,6 +70,16 @@ onMounted(loadProfile);
 </script>
 
 <style scoped>
+/* Fuerza texto negro dentro de cada fila (evita overrides globales) */
+.profile-row {
+  color: #000 !important;
+}
+
+/* Si quieres que también los hijos (spans) respeten, esto cubre todo */
+.profile-row * {
+  color: #000 !important;
+}
+
 .btn {
   background-color: #0f766e;
   color: white;

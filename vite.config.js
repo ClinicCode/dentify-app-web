@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import vue from '@vitejs/plugin-vue'
 import path from 'path';
 
 export default defineConfig({
@@ -12,7 +12,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'http://localhost:8080',
+                target: 'https://dentify-f0gdbubtaafmdfg9.canadacentral-01.azurewebsites.net',
                 changeOrigin: true,
                 secure: false,
             },

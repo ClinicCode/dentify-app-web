@@ -2,7 +2,8 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 body {
-
+    margin: 0;
+    background: transparent;
     font-family: "Inter", sans-serif;
 }
 
