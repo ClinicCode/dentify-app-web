@@ -22,12 +22,17 @@ import RadioButton from 'primevue/radiobutton'
 import Dropdown from 'primevue/dropdown'
 import 'primeicons/primeicons.css'
 
+import 'primeflex/primeflex.css'
+
+import Material from '@primeuix/themes/material';
+
 import router from './router'
 import { createPinia } from "pinia";
+import {DatePicker} from "primevue";
 
 const app = createApp(App)
 
-app.use(PrimeVue, { unstyled: true })
+app.use(PrimeVue, {theme: {preset: Material}, ripple: true})
 app.use(router)
 app.use(createPinia())
 
@@ -48,5 +53,8 @@ app.component('pv-card', Card)
     .component('pv-radiobutton', RadioButton)
     .component('Chart', Chart)
     .component('pv-dropdown', Dropdown)
-
+    .component('pv-card',Card)
+    .component('pv-dialog', Dialog)
+    .component('pv-input-text', InputText)
+    .component('pv-date-picker', DatePicker)
 app.mount('#app')
