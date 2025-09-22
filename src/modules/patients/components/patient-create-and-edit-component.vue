@@ -105,27 +105,27 @@ export default {
   <pv-dialog v-bind:visible="visible" :modal="true">
     <div class="field mt-5">
       <label for="firstName">DNI</label>
-      <pv-input-text id="firstName" v-model="dni"/>
+      <pv-inputtext id="firstName" v-model="dni"/>
     </div>
     <div class="field mt-5">
       <label for="firstName">First Name</label>
-      <pv-input-text id="firstName" v-model="firstName"/>
+      <pv-inputtext id="firstName" v-model="firstName"/>
     </div>
     <div class="field mt-5">
       <label for="lastName">Last Name</label>
-      <pv-input-text id="lastName" v-model="lastName"/>
+      <pv-inputtext id="lastName" v-model="lastName"/>
     </div>
     <div class="field mt-5">
       <label for="lastName">Email</label>
-      <pv-input-text id="lastName" v-model="email"/>
+      <pv-inputtext id="lastName" v-model="email"/>
     </div>
     <div class="field mt-5">
       <label for="lastName">Address</label>
-      <pv-input-text id="lastName" v-model="homeAddress"/>
+      <pv-inputtext id="lastName" v-model="homeAddress"/>
     </div>
     <div class="field mt-5">
       <label for="birthdate">Birthdate</label>
-      <pv-date-picker v-model="birthdate" date-format="dd/mm/yy"  fluid required/>
+      <pv-datepicker v-model="birthdate" date-format="dd/mm/yy"  fluid required/>
     </div>
 
     <pv-button @click="onCancel()">Cancel</pv-button>
