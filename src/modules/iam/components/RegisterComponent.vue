@@ -85,7 +85,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useAuthStore } from "../stores/AuthStore.js";
+import { useAuthStore } from "../stores/authStore.js";
 import { Register } from "../domain/model/Register.js";
 import { useRouter } from "vue-router";
 
