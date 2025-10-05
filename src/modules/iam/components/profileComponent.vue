@@ -35,7 +35,7 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "../stores/authStore.js";
-import { ProfileRepository } from "../data/repository/ProfileRepository.js";
+import { ProfileRepository } from "../data/repository/profileRepository.js";
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -70,12 +70,12 @@ onMounted(loadProfile);
 </script>
 
 <style scoped>
-/* Fuerza texto negro dentro de cada fila (evita overrides globales) */
+
 .profile-row {
   color: #000 !important;
 }
 
-/* Si quieres que también los hijos (spans) respeten, esto cubre todo */
+
 .profile-row * {
   color: #000 !important;
 }

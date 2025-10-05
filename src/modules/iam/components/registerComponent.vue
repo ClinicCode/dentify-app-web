@@ -85,8 +85,8 @@
 
 <script setup>
 import { ref } from "vue";
-import { useAuthStore } from "../stores/AuthStore.js";
-import { Register } from "../domain/model/Register.js";
+import { useAuthStore } from "../stores/authStore.js";
+import { Register } from "../domain/model/register.js";
 import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
@@ -126,7 +126,7 @@ const goLogin = () => router.push("/login");
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
   font-size: 1rem;
   background: #f9fafb;
-  color: #111827; /* Texto negro */
+  color: #111827;
 }
 .input:focus {
   border-color: #0f766e;

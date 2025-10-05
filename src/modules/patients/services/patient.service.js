@@ -1,29 +1,27 @@
-import BaseService from "@/shared/serivces/BaseService.js";
+import BaseService from "@/shared/serivces/baseService.js";
 
 export class PatientService extends BaseService {
-    resourceEndpoint = import.meta.env.VITE_PATIENTS_ENDPOINT_PATH
-
-    getAll() {
-        return super.getAll(this.resourceEndpoint);
+    constructor() {
+        super('');
     }
 
-    getById(id) {
-        return super.getById(this.resourceEndpoint, id);
+    async getAllPatients() {
+        return await this.get('/v1/patients');
     }
 
-    create(data) {
-        return super.create(this.resourceEndpoint, data);
+    async getPatientById(id) {
+        return await this.get(`/v1/patients/${id}`);
     }
 
-    update(id, data) {
-        return super.update(this.resourceEndpoint, id, data);
+    async createPatient(data) {
+        return await this.post('/v1/patients', data);
     }
 
-    patch(id, data) {
-        return super.patch(this.resourceEndpoint, id, data);
+    async updatePatient(id, data) {
+        return await this.put(`/v1/patients/${id}`, data);
     }
 
-    delete(id) {
-        return super.delete(this.resourceEndpoint, id);
+    async deletePatient(id) {
+        return await this.delete(`/v1/patients/${id}`);
     }
 }

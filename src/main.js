@@ -36,7 +36,6 @@ app.use(PrimeVue, { theme: { preset: Material }, ripple: true })
 app.use(router)
 app.use(createPinia())
 
-// ✅ Registro limpio y consistente
 app.component('pv-card', Card)
     .component('pv-inputtext', InputText)
     .component('pv-password', Password)

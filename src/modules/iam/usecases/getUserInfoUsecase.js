@@ -1,4 +1,4 @@
-export class GetUserInfoUseCase {
+export class GetUserInfoUsecase {
     constructor(profileRepository) {
         this.profileRepository = profileRepository;
     }

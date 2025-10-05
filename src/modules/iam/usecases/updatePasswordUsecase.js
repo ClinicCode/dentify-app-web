@@ -1,9 +1,9 @@
-export class UpdateInformationUseCase {
+export class UpdatePasswordUsecase {
     constructor(profileRepository) {
         this.profileRepository = profileRepository;
     }
 
     async execute(data) {
-        await this.profileRepository.updateInformation(data);
+        await this.profileRepository.updatePassword(data);
     }
 }

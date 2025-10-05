@@ -1,55 +1,105 @@
+<template>
+  <pv-dialog :visible="visible" modal header="Paciente" @update:visible="$emit('update:visible', $event)">
+    <div class="field mt-3">
+      <label for="dni">DNI</label>
+      <pv-inputtext id="dni" v-model="dni" />
+    </div>
+    <div class="field mt-3">
+      <label for="firstName">First Name</label>
+      <pv-inputtext id="firstName" v-model="firstName" />
+    </div>
+    <div class="field mt-3">
+      <label for="lastName">Last Name</label>
+      <pv-inputtext id="lastName" v-model="lastName" />
+    </div>
+    <div class="field mt-3">
+      <label for="email">Email</label>
+      <pv-inputtext id="email" v-model="email" />
+    </div>
+    <div class="field mt-3">
+      <label for="homeAddress">Address</label>
+      <pv-inputtext id="homeAddress" v-model="homeAddress" />
+    </div>
+    <div class="field mt-3">
+      <label for="birthdate">Birthdate</label>
+      <pv-calendar v-model="birthdate" dateFormat="dd/mm/yy" />
+    </div>
+
+    <div class="flex justify-end gap-2 mt-4">
+      <pv-button @click="onCancel" severity="secondary">Cancel</pv-button>
+      <pv-button @click="submitPatient">{{ editMode ? "Update Patient" : "Create Patient" }}</pv-button>
+    </div>
+  </pv-dialog>
+</template>
+
 <script>
-import {PatientService} from "@/modules/patients/services/patient.service.js";
-import {Patient} from "@/modules/patients/model/patient.entity.js";
+import { Patient } from "@/modules/patients/model/patient.entity.js";
+import { PatientService } from "@/modules/patients/services/patient.service.js";
 
 export default {
   name: "patient-create-and-edit",
-  props:{
-    visible: false,
-    item: null,
-    editMode:false
+  props: {
+    visible: Boolean,
+    item: Object,
+    editMode: Boolean
   },
-  data(){
+  emits: ["close-dialog", "patient-created", "patient-updated", "update:visible"],
+  data() {
     return {
-      id:0,
-      dni:'',
-      firstName: '',
-      lastName: '',
-      email:'',
-      homeAddress: '',
-      birthdate:new Date(),
+      id: 0,
+      dni: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      homeAddress: "",
+      birthdate: new Date(),
       patientService: new PatientService()
-    }
+    };
   },
   methods: {
-    onCancel(){
-
-      this.$emit('close-dialog');
+    onCancel() {
+      this.$emit("close-dialog");
+      this.$emit("update:visible", false);
       this.clearForm();
     },
-
-    createPatient(){
-      let patientResource = {
-        dni: this.dni,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        homeAddress: this.homeAddress,
-        birthday: this.birthdate.toISOString().slice(0, 10)
-      }
-      console.log(patientResource);
-      this.patientService.create(patientResource).then(response => {
-        console.log(response);
-        let id = response.id;
-
-        console.log(this.item);
-        this.$emit('patient-created', new Patient({id:id, ...patientResource}));
-        this.$emit('close-dialog');
+    async createPatient() {
+      try {
+        const resource = this.getPatientResource();
+        const response = await this.patientService.createPatient(resource);
+        this.$emit("patient-created", new Patient(response));
+        this.$emit("close-dialog");
+        this.$emit("update:visible", false);
         this.clearForm();
-      });
+      } catch (err) {
+        console.error("Error creando paciente", err);
+      }
     },
-    updatePatient(){
-      let patientResource = {
+    async updatePatient() {
+      try {
+        const resource = this.getPatientResource();
+        const response = await this.patientService.updatePatient(this.id, resource);
+        this.$emit("patient-updated", new Patient(response));
+        this.$emit("close-dialog");
+        this.$emit("update:visible", false);
+        this.clearForm();
+      } catch (err) {
+        console.error("Error actualizando paciente", err);
+      }
+    },
+    submitPatient() {
+      this.editMode ? this.updatePatient() : this.createPatient();
+    },
+    clearForm() {
+      this.id = 0;
+      this.dni = "";
+      this.firstName = "";
+      this.lastName = "";
+      this.email = "";
+      this.homeAddress = "";
+      this.birthdate = new Date();
+    },
+    getPatientResource() {
+      return {
         dni: this.dni,
         firstName: this.firstName,
         lastName: this.lastName,
@@ -57,29 +107,6 @@ export default {
         homeAddress: this.homeAddress,
         birthday: this.birthdate.toISOString().slice(0, 10)
       };
-      this.patientService.update(this.id,patientResource).then(response => {
-        console.log(response);
-        this.$emit('patient-updated', new Patient(response));
-        this.$emit('close-dialog');
-        this.clearForm();
-      })
-    },
-    submitPatient(){
-      if(this.editMode){
-        this.updatePatient();
-      }else{
-        this.createPatient();
-      }
-    },
-
-    clearForm(){
-      this.dni = '';
-      this.firstName = '';
-      this.lastName = '';
-      this.email = '';
-      this.homeAddress = '';
-      this.birthdate = new Date();
-
     }
   },
   watch: {
@@ -98,42 +125,5 @@ export default {
       }
     }
   }
-}
+};
 </script>
-
-<template>
-  <pv-dialog v-bind:visible="visible" :modal="true">
-    <div class="field mt-5">
-      <label for="firstName">DNI</label>
-      <pv-input-text id="firstName" v-model="dni"/>
-    </div>
-    <div class="field mt-5">
-      <label for="firstName">First Name</label>
-      <pv-input-text id="firstName" v-model="firstName"/>
-    </div>
-    <div class="field mt-5">
-      <label for="lastName">Last Name</label>
-      <pv-input-text id="lastName" v-model="lastName"/>
-    </div>
-    <div class="field mt-5">
-      <label for="lastName">Email</label>
-      <pv-input-text id="lastName" v-model="email"/>
-    </div>
-    <div class="field mt-5">
-      <label for="lastName">Address</label>
-      <pv-input-text id="lastName" v-model="homeAddress"/>
-    </div>
-    <div class="field mt-5">
-      <label for="birthdate">Birthdate</label>
-      <pv-date-picker v-model="birthdate" date-format="dd/mm/yy"  fluid required/>
-    </div>
-
-    <pv-button @click="onCancel()">Cancel</pv-button>
-    <pv-button @click="submitPatient">{{ editMode ? 'Update Pacient' : 'Create Pacient'}}</pv-button>
-  </pv-dialog>
-
-</template>
-
-<style scoped>
-
-</style>
