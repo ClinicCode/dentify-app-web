@@ -7,6 +7,7 @@ import Dashboard from '../modules/dashborad/page/dashboard.vue';
 import MainLayoutComponent from '../public/layout/main-layout.component.vue';
 import NotFound from '../public/not-found.component.vue';
 import ProfileComponent from '@/modules/iam/components/profileComponent.vue';
+import PaymentComponent from '../modules/payments/pages/PaymentsPage.vue'
 
 const PatientManagement = () =>
     import('../modules/patients/pages/patients-management.component.vue');
@@ -23,6 +24,7 @@ const routes = [
         component: MainLayoutComponent,
         children: [
             { path: 'dashboard', component: Dashboard, name: 'dashboard' },
+            { path: 'payments', component: PaymentComponent, name: 'payments' },
             { path: 'profile', component: ProfileComponent, name: 'profile' },
             { path: 'patients', component: PatientManagement, name: 'patients' },
         ],
